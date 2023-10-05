@@ -7,6 +7,7 @@ import { NavigationContainer, DarkTheme } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import Form from "./Components/Form";
+import Calculator from "./Components/Calculator";
 
 const Drawer = createDrawerNavigator();
 
@@ -27,9 +28,10 @@ const App = () => {
   return (
     <NavigationContainer theme={Theme}>
       <Drawer.Navigator
-        initialRouteName="Form"
+        initialRouteName="Calculator"
         screenOptions={{ headerTintColor: "#fff" }}>
         <Drawer.Screen name="Form" component={Form} />
+        <Drawer.Screen name="Calculator" component={Calculator} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
