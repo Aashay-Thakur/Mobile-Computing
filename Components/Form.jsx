@@ -22,29 +22,35 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 const Form = () => {
+  const [selectedId, setSelectedId] = useState();
+  const [isEnabled, setIsEnabled] = useState(false);
+
   const gender = useMemo(
     () => [
       {
         id: "1",
         label: "Male",
         value: "Male",
+        color: selectedId === "1" ? "#81b0ff" : "#fff",
+        borderColor: selectedId === "1" ? "#81b0ff" : "#fff",
       },
       {
         id: "2",
         label: "Female",
         value: "Female",
+        color: selectedId === "2" ? "#81b0ff" : "#fff",
+        borderColor: selectedId === "2" ? "#81b0ff" : "#fff",
       },
       {
         id: "3",
         label: "Other",
         value: "Other",
+        color: selectedId === "3" ? "#81b0ff" : "#fff",
+        borderColor: selectedId === "3" ? "#81b0ff" : "#fff",
       },
     ],
-    [],
+    [selectedId],
   );
-
-  const [selectedId, setSelectedId] = useState();
-  const [isEnabled, setIsEnabled] = useState(false);
 
   function onRadioChange(e) {
     setSelectedId(e);
@@ -122,7 +128,12 @@ const Form = () => {
           />
           <View style={styles.brandContainer}>{addBrandLogos()}</View>
           <View style={styles.adsContainer}>
-            <Switch onValueChange={handleSwitch} value={isEnabled} />
+            <Switch
+              onValueChange={handleSwitch}
+              value={isEnabled}
+              thumbColor={isEnabled ? "#ffffff" : null}
+              trackColor={{ false: "#767577", true: "#81b0ff" }}
+            />
             <Text>Turn on Personalised Ads?</Text>
           </View>
           <View style={styles.buttonContainer}>
@@ -145,7 +156,7 @@ const styles = StyleSheet.create({
     gap: 12,
     textInput: {
       height: 40,
-      borderColor: "#000000",
+      borderColor: "#fff",
       borderBottomWidth: 1,
       marginBottom: 36,
       width: "50%",
@@ -174,12 +185,12 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 40,
-    borderColor: "#000000",
+    borderColor: "#fff",
     borderBottomWidth: 1,
     marginBottom: 36,
   },
   buttonContainer: {
-    marginTop: 96,
+    marginTop: 24,
   },
   button: {
     backgroundColor: "white",
@@ -194,7 +205,6 @@ const styles = StyleSheet.create({
   brandLogo: {
     width: 24,
     height: 24,
-    color: "#000000",
   },
 });
 
