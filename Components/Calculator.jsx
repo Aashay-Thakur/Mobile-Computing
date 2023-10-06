@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Pressable, ToastAndroid } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Pressable,
+  ToastAndroid,
+  Keyboard,
+} from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faDeleteLeft } from "@fortawesome/free-solid-svg-icons";
 
-import keys, { primaryColor, secondaryColor, size } from "./keys";
+import Keypad from "./Keypad";
 
 const Calculator = () => {
   const [input, setInput] = useState("");
@@ -45,7 +52,6 @@ const Calculator = () => {
     } else if (term2.length === 0) {
       setOutput("");
     }
-    console.log(term1, operator, term2);
   }, [term1, operator, term2]);
 
   function handleInput(key) {
@@ -97,35 +103,14 @@ const Calculator = () => {
     if (operator === "÷") return Number(term1) / Number(term2);
   }
 
-  const populateKeys = () => {
-    return Object.keys(keys).map((key, index) => {
-      let keyObject = keys[key];
-      return (
-        <Pressable
-          key={index}
-          style={styles.keyContainer}
-          android_ripple={{ color: "#888" }}
-          onPress={() => handleInput([key, keyObject])}>
-          <View>
-            {keyObject.isElement ? (
-              keyObject.element
-            ) : (
-              <Text style={{ ...styles.characterText, color: keyObject.color }}>
-                {keyObject.character}
-              </Text>
-            )}
-          </View>
-        </Pressable>
-      );
-    });
-  };
-
   return (
     <View style={{ ...styles.calculatorContainer }}>
       <View style={styles.displayContainer}>
         <TextInput
           style={{ ...styles.inputBox, fontSize: input.length < 10 ? 48 : 30 }}
           showSoftInputOnFocus={false}
+          editable={false}
+          onFocus={Keyboard.dismiss()}
           autoComplete="off"
           value={input}
         />
@@ -138,27 +123,35 @@ const Calculator = () => {
         onPress={() => {
           setInput(input.slice(0, -1));
         }}>
-        <FontAwesomeIcon icon={faDeleteLeft} size={30} color={secondaryColor} />
+        <FontAwesomeIcon icon={faDeleteLeft} size={30} color="teal" />
       </Pressable>
-      <View style={styles.keypadContainer}>{populateKeys()}</View>
+      <Keypad handleInput={handleInput} />
     </View>
   );
 };
 
 export default Calculator;
 
+const darkTheme = {
+  primaryColor: "#1e1e1e",
+  backgroundColor: "#000",
+  secondaryColor: "#bbb",
+  accentColor: "teal",
+};
+
+const theme = darkTheme;
+
 const styles = StyleSheet.create({
   calculatorContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: theme.backgroundColor,
   },
   displayContainer: {
     flex: 2,
-    backgroundColor: "#1e1e1e",
+    backgroundColor: theme.backgroundColor,
     width: "100%",
-    borderBottomWidth: 1,
-    borderBottomColor: "#888",
     padding: 10,
     paddingRight: 20,
     judtifyContent: "space-between",
@@ -167,41 +160,27 @@ const styles = StyleSheet.create({
   inputBox: {
     flex: 2,
     fontSize: 48,
-    color: "#ffffff",
+    color: theme.secondaryColor,
     textAlign: "right",
   },
   outputBox: {
     flex: 1,
   },
   outputText: {
-    color: "#ffffff",
+    color: theme.secondaryColor,
     fontSize: 30,
     textAlign: "right",
     paddingRight: 10,
   },
   backspaceContainer: {
-    backgroundColor: "#1e1e1e",
-    width: "100%",
+    backgroundColor: theme.backgroundColor,
+    width: "90%",
     height: "max-content",
     justifyContent: "center",
     alignItems: "flex-end",
-    paddingRight: 35,
-    paddingTop: 20,
-  },
-  keypadContainer: {
-    flex: 8,
-    backgroundColor: "#1e1e1e",
-    width: "100%",
-    flexDirection: "row",
-    flexWrap: "wrap",
-  },
-  keyContainer: {
-    width: 100 / 4 + "%",
-    height: 100 / 5 + "%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  characterText: {
-    fontSize: 30,
+    paddingRight: 15,
+    paddingVertical: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: theme.accentColor,
   },
 });
