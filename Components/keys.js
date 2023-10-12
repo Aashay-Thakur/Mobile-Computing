@@ -7,6 +7,9 @@ import {
   faTimes,
   faPercent,
   faPlusMinus,
+  faDeleteLeft,
+  faArrowUp,
+  faArrowDown,
 } from "@fortawesome/free-solid-svg-icons";
 
 const primaryColor = "#bbb";
@@ -133,7 +136,7 @@ export default keys = {
     color: primaryColor,
     type: "number",
   },
-  dot: {
+  decimal: {
     isElement: false,
     character: ".",
     color: primaryColor,
@@ -145,6 +148,21 @@ export default keys = {
       <FontAwesomeIcon icon={faEquals} color={primaryColor} size={size} />
     ),
     type: "equals",
+  },
+  backSpace: {
+    isElement: true,
+    type: "backSpace",
+    element: <FontAwesomeIcon icon={faDeleteLeft} size={30} color="teal" />,
+  },
+  up: {
+    isElement: true,
+    type: "up",
+    element: <FontAwesomeIcon icon={faArrowUp} size={30} color="teal" />,
+  },
+  down: {
+    isElement: true,
+    type: "down",
+    element: <FontAwesomeIcon icon={faArrowDown} size={30} color="teal" />,
   },
 };
 

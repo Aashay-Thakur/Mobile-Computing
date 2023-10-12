@@ -1,13 +1,14 @@
 import "react-native-gesture-handler";
 
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 import { NavigationContainer, DarkTheme } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import Form from "./Components/Form";
 import Calculator from "./Components/Calculator";
+import TempConverter from "./Components/TempConverter";
 
 const Drawer = createDrawerNavigator();
 
@@ -28,10 +29,11 @@ const App = () => {
   return (
     <NavigationContainer theme={Theme}>
       <Drawer.Navigator
-        initialRouteName="Calculator"
+        initialRouteName="Temperature Converter"
         screenOptions={{ headerTintColor: "#fff" }}>
         <Drawer.Screen name="Form" component={Form} />
         <Drawer.Screen name="Calculator" component={Calculator} />
+        <Drawer.Screen name="Temperature Converter" component={TempConverter} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
