@@ -3,14 +3,23 @@ import React from "react";
 
 import keys, { primaryColor, secondaryColor, size } from "./keys";
 
-const Keypad = ({ handleInput }) => {
+const Keypad = ({
+  handleInput,
+  totalKeysInColumn,
+  totalKeysInRow,
+  arrayOfKeys = Object.keys(keys),
+}) => {
   const populateKeys = () => {
-    return Object.keys(keys).map((key, index) => {
+    return arrayOfKeys.map((key, index) => {
       let keyObject = keys[key];
       return (
         <Pressable
           key={index}
-          style={styles.keyContainer}
+          style={{
+            ...styles.keyContainer,
+            height: 100 / totalKeysInRow + "%",
+            width: 100 / totalKeysInColumn + "%",
+          }}
           android_ripple={{ color: "#888" }}
           onPress={() => handleInput([key, keyObject])}>
           <View>
@@ -50,8 +59,6 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
   },
   keyContainer: {
-    width: 100 / 4 + "%",
-    height: 100 / 5 + "%",
     justifyContent: "center",
     alignItems: "center",
   },

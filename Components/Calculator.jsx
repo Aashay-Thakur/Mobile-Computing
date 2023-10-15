@@ -21,6 +21,29 @@ const Calculator = () => {
   const [term2, setTerm2] = useState("");
   const [operator, setOperator] = useState("");
 
+  var arrayOfKeys = [
+    "clear",
+    "brackets",
+    "percent",
+    "divide",
+    "seven",
+    "eight",
+    "nine",
+    "multiply",
+    "four",
+    "five",
+    "six",
+    "minus",
+    "one",
+    "two",
+    "three",
+    "plus",
+    "minusPlus",
+    "zero",
+    "decimal",
+    "equals",
+  ];
+
   useEffect(() => {
     if (input.length === 0) return;
     let splitTerms = /(\d+\.?\d*%?)([+-x÷]?)(\d*\.?\d*%?)/g.exec(input);
@@ -125,7 +148,12 @@ const Calculator = () => {
         }}>
         <FontAwesomeIcon icon={faDeleteLeft} size={30} color="teal" />
       </Pressable>
-      <Keypad handleInput={handleInput} />
+      <Keypad
+        handleInput={handleInput}
+        totalKeysInRow={4}
+        totalKeysInColumn={5}
+        arrayOfKeys={arrayOfKeys}
+      />
     </View>
   );
 };
