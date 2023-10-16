@@ -150,8 +150,8 @@ const Calculator = () => {
       </Pressable>
       <Keypad
         handleInput={handleInput}
-        totalKeysInRow={4}
-        totalKeysInColumn={5}
+        totalKeysInRow={5}
+        totalKeysInColumn={4}
         arrayOfKeys={arrayOfKeys}
       />
     </View>
