@@ -9,6 +9,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import Form from "./Components/Form";
 import Calculator from "./Components/Calculator";
 import TempConverter from "./Components/TempConverter";
+import Calendar from "./Components/Calendar";
 
 const Drawer = createDrawerNavigator();
 
@@ -29,11 +30,12 @@ const App = () => {
   return (
     <NavigationContainer theme={Theme}>
       <Drawer.Navigator
-        initialRouteName="Temperature Converter"
+        initialRouteName="Calendar"
         screenOptions={{ headerTintColor: "#fff" }}>
         <Drawer.Screen name="Form" component={Form} />
         <Drawer.Screen name="Calculator" component={Calculator} />
         <Drawer.Screen name="Temperature Converter" component={TempConverter} />
+        <Drawer.Screen name="Calendar" component={Calendar} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
