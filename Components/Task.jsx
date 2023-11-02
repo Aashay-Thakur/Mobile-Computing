@@ -1,9 +1,8 @@
 import React from "react";
 import firestore from "@react-native-firebase/firestore";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { Pressable, StyleSheet, Text, ToastAndroid, View } from "react-native";
+import { faCheck, faXmark, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 function Todo({ id, title, complete }) {
   async function toggleComplete() {
@@ -27,11 +26,7 @@ function Todo({ id, title, complete }) {
   return (
     <View style={styles.taskContainer}>
       <Pressable onPress={() => toggleComplete()}>
-        <FontAwesomeIcon
-          icon={complete ? faCheck : faXmark}
-          color={complete ? "teal" : "white"}
-          size={30}
-        />
+        <FontAwesomeIcon icon={complete ? faCheck : faXmark} color={complete ? "teal" : "white"} size={30} />
       </Pressable>
       <View>
         <Text style={styles.taskText}>{title}</Text>
