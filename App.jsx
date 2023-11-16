@@ -12,6 +12,7 @@ import TempConverter from "./Components/TempConverter";
 import Calendar from "./Components/Calendar";
 import ToDo from "./Components/ToDo";
 import Database from "./Components/Database";
+import Quiz from "./Components/Quiz";
 
 const Drawer = createDrawerNavigator();
 
@@ -31,13 +32,14 @@ const Theme = {
 const App = () => {
   return (
     <NavigationContainer theme={Theme}>
-      <Drawer.Navigator initialRouteName="Database" screenOptions={{ headerTintColor: "#fff" }}>
+      <Drawer.Navigator initialRouteName="Quiz" screenOptions={{ headerTintColor: "#fff" }}>
         <Drawer.Screen name="Form" component={Form} />
         <Drawer.Screen name="Calculator" component={Calculator} />
         <Drawer.Screen name="Temperature Converter" component={TempConverter} />
         <Drawer.Screen name="Calendar" component={Calendar} />
         <Drawer.Screen name="ToDo" component={ToDo} />
         <Drawer.Screen name="Database" component={Database} />
+        <Drawer.Screen name="Quiz" component={Quiz} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
